@@ -8,7 +8,7 @@
     --cyber-yellow: #60ffc2;
     --neon-orange: #d64d17;
     --neon-green: #00FFD7;
-    --text-dark: #222222;
+    --text-dark:white;
     --gray-soft: #AAAAAA;
 }
 img, video {
@@ -44,7 +44,7 @@ img, video {
 
 
 body {
-    background: #f8f8ff;
+    background: black;
     color: var(--text-dark);
     font-family: 'Roboto', 'Arial', sans-serif;
     margin: 0;
@@ -134,12 +134,33 @@ h3, .slide-title {
 
 /* --- NAVIGATION BAR --- */
 .navbar-cyber {
+    
+    position: fixed; 
+    top: 0;          
+    width: 100%;     
+    z-index: 1000;   
     background: linear-gradient(90deg, var(--cyber-pink) 0%, var(--neon-blue) 100%);
-    margin-bottom: 2em;
     box-shadow: 0 2px 24px var(--gray-soft);
     border-radius: 0 0 32px 32px / 0 0 24px 24px;
+    
+    margin-bottom: 0; 
 }
 
+@media (max-width: 768px) {
+
+    .navbar-cyber ul {
+       
+        flex-direction: column;
+
+        
+        align-items: flex-start;
+
+       
+        gap: 2em;
+        padding: 1.5em 1.5em; 
+    }
+
+}
 
 
 .navbar-cyber ul {
@@ -151,20 +172,19 @@ h3, .slide-title {
     padding: 0.75em 0;
 }
 
-
-
 .navbar-cyber li a {
     color: var(--neon-red);
     font-weight: 600;
     font-size: 1.1em;
     text-transform: uppercase;
     text-decoration: none;
-    padding: 0.7em 1.7em;
+    padding: 0.7em 1em; /* <-- Increased padding for a larger box */
     border-radius: 15px;
     box-shadow: 0 0 8px var(--cyber-purple);
     background: rgba(255, 255, 255, 0.08);
     transition: background 0.3s, color 0.3s, box-shadow 0.3s, border 0.3s;
     position: relative;
+    margin-bottom: 1.8em;
 }
 
 
@@ -203,7 +223,7 @@ h3, .slide-title {
 
 .tagline {
     font-size: 1.5em;
-    color: var(--neon-black);
+    color: white;
     text-align: center;
     margin: 0.3em 0 2em 0;
     text-shadow: 0 0 1em var(--cyber-yellow), 0 0 0.3em var(--cyber-purple);
@@ -243,7 +263,7 @@ h3, .slide-title {
 /* --- RENAISSANCE SECTION --- */
 .renaissance-title {
     font-size: 3rem;
-    color: #101357;
+    color: #ca30b6;
     text-align: center;
     margin-top: 80px;
     letter-spacing: 0.08em;
@@ -255,7 +275,7 @@ h3, .slide-title {
     max-width: 520px;
     margin: 20px auto 0;
     font-size: 1.17rem;
-    color: #0f0b0d;
+    color:white;
     text-align: center;
     line-height: 1.66;
 }
@@ -331,7 +351,7 @@ h3, .slide-title {
 
 .subtitle {
     text-align: center;
-    color: #1a3533;
+    color: #f0f3f3;
     font-size: 1.12em;
     margin-bottom: 36px;
 }
@@ -345,35 +365,61 @@ h3, .slide-title {
 
 
 .grid {
-    display: grid;
+    display: flex;
     grid-template-columns: repeat(4, 1fr);
-    gap: 28px;
+    /* gap: 28px; */
     justify-content: center;
+    width: calc(378px * 16); 
+    animation-name: marquee-scroll;
+    animation-duration: 30s; /* Adjust duration to control speed */
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
 }
 
+.wrapper:hover .grid {
+    animation-play-state: paused;
+}
 
+/* The keyframes define the start and end points of the animation */
+@keyframes marquee-scroll {
+    0% {
+        /* Starts at the beginning */
+        transform: translateX(0%);
+    }
+    100% {
+        /* Ends after scrolling through the first set of 8 cards */
+        /* This creates the seamless loop effect */
+        transform: translateX(-50%); 
+    }
+}
 
 .cardR {
+    /* Ensure cards do not shrink */
+    flex-shrink: 0;
+    
+    /* Adjust margin for spacing in the marquee */
+    margin: 0 14px; /* Halved the gap for margin on each side */
     width: 350px;
     height: 400px;
+    
+    /* Keep your other card styles (background, border-radius, etc.) */
     background: white;
     border-radius: 16px;
     box-shadow: 0 7px 38px rgba(207, 203, 205, 0.09);
     display: flex;
     flex-direction: column;
-    min-height: 200px;
     overflow: hidden;
     position: relative;
-    padding-bottom: 3px;
-    transition: box-shadow 0.3s;
+    transition: transform 0.3s, box-shadow 0.3s;
 }
 
 
 
 .cardR:hover {
-    box-shadow: 0 14px 48px rgba(245, 247, 246, 0.24);
+    /* Add a slight lift effect on hover */
+    transform: translateY(-10px);
+    box-shadow: 0 14px 48px rgba(0, 0, 0, 0.15);
 }
-
 
 
 .card-image {
@@ -917,17 +963,8 @@ h3, .slide-title {
 
 
 .about-section {
-    background: rgba(255, 255, 255, 0.93);
-    /* border-radius: 18px;
-    box-shadow: 0 6px 26px #22e6fc18;
-    padding: 38px 28px;
-    margin-bottom: 38px;
-    position: relative;
-    border-left: 5px solid #22e6fc33;
-
-
-
-    transition: box-shadow 0.23s; */
+    background: rgba(10, 9, 9, 0.93);
+    
      display: flex;
   flex-direction: column;
   align-items: center;
@@ -985,7 +1022,7 @@ h3, .slide-title {
 .timeline-item {
     margin-bottom: 15px;
     font-weight: 500;
-    color: #222;
+    color:white;
     position: relative;
 }
 

@@ -307,16 +307,7 @@
             
         </div>
     </div>
-
-<!-- 
-<div id="timeline-view" class="view-section" style="display:none;">
-    <div class="timeline-container">
-      
-    </div>
-</div> -->
-
-
-            <section class="about-section">
+ <section class="about-section">
                 <div class="impacts">Our Impact</div>
                 <div class="stats-wrap">
                     <div class="stat-card neon-card"><span class="counter" data-target="50">0</span><span>Events
@@ -369,7 +360,25 @@
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.0/dist/ScrollToPlugin.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.9.6/lottie.min.js"></script>
     <script src="script.js"></script>
-    </div>
+    <script type="text/javascript">
+    (function (l) {
+      if (l.search[1] === "/") {
+        var decoded = l.search
+          .slice(1)
+          .split("&")
+          .map(function (s) {
+            return s.replace(/and/g, "&");
+          })
+          .join("?");
+        window.history.replaceState(
+          null,
+          null,
+          l.pathname.slice(0, -1) + decoded + l.hash
+        );
+      }
+    })(window.location);
+  </script>
+    
 </body>
 
 </html>
